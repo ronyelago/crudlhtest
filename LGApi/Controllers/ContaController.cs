@@ -5,6 +5,12 @@ namespace LGApi.Controllers;
 
 public class ContaController : Controller
 {
+    [HttpGet("ObterTodasContas")]
+    public async Task<ActionResult<IEnumerable<ContaModel>>> Get()
+    {
+        return Ok();
+    }
+    
     [HttpGet("ObterContaPorId/{id}")]
     public async Task<ActionResult<ContaModel>> Get()
     {

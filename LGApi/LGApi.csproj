@@ -30,8 +30,4 @@
       <Compile Remove="Controller1.cs" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
-
 </Project>

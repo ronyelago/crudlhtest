@@ -8,6 +8,7 @@ public class Conta
     public bool Ativa { get; set; }
     public string? Observacoes { get; set; }
     public int DiaVencimento { get; set; }
+    public DateTime? DataVencimento { get; set; }
     public DateTime? DataCadastro { get; set; }
     public DateTime? DataExpiracao { get; set; }
 }
