@@ -5,6 +5,7 @@ using LGApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+IConfiguration configuration = new ConfigurationManager();
 
 builder.Services.AddControllers().AddJsonOptions(opt =>
 {
@@ -15,7 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<LgApiContext>(opt => 
-    opt.UseNpgsql(Environment.GetEnvironmentVariable(@"LgApiConnectionString")));
+    opt.UseNpgsql(configuration.GetConnectionString("LgApiConnectionString")));
+// builder.Services.AddDbContext<LgApiContext>(opt => 
+//     opt.UseNpgsql(Environment.GetEnvironmentVariable(@"LgApiConnectionString")));
 
 builder.Services.AddScoped<LgApiContext>();
 builder.Services.AddTransient<IContaRepository, ContaRepository>();
