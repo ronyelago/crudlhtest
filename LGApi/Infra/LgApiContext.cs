@@ -5,7 +5,7 @@ namespace LGApi.Infra;
 
 public class LgApiContext : DbContext
 {
-    public DbSet<Conta> Contas { get; set; }
+    public DbSet<Conta> Conta { get; set; }
 
     public LgApiContext(DbContextOptions<LgApiContext> options) : base(options)
     {

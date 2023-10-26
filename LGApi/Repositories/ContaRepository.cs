@@ -21,6 +21,12 @@ public class ContaRepository : IContaRepository
         return await context.Set<Conta>().ToListAsync();
     }
 
+    public async Task Add(Conta conta)
+    {
+        context.Set<Conta>().Add(conta);
+        await context.SaveChangesAsync();
+    }
+
     public async Task Update(Conta conta)
     {
         context.Entry(conta).State = EntityState.Modified;

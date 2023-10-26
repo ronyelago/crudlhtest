@@ -10,5 +10,5 @@ public class Conta
     public int DiaVencimento { get; set; }
     public DateTime? DataVencimento { get; set; }
     public DateTime? DataCadastro { get; set; }
-    public DateTime? DataExpiracao { get; set; }
+    public DateTime DataExpiracao { get; set; }
 }
