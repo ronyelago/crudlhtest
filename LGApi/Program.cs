@@ -5,7 +5,6 @@ using LGApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-IConfiguration configuration = new ConfigurationManager();
 
 builder.Services.AddControllers().AddJsonOptions(opt =>
 {
@@ -15,13 +14,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddDbContext<LgApiContext>(opt => 
-    opt.UseNpgsql(configuration.GetConnectionString("LgApiConnectionString")));
-// builder.Services.AddDbContext<LgApiContext>(opt => 
-//     opt.UseNpgsql(Environment.GetEnvironmentVariable(@"LgApiConnectionString")));
+builder.Services.AddDbContext<LgApiContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("LgApiConnectionString"));
+    opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
 
+// builder.Services.AddDbContext<LgApiContext>(opt =>
+// {
+//     opt.UseNpgsql(Environment.GetEnvironmentVariable("LgApiConnectionString"));
+//     opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+// });
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<LgApiContext>();
-builder.Services.AddTransient<IContaRepository, ContaRepository>();
+builder.Services.AddScoped<IContaRepository, ContaRepository>();
 
 var app = builder.Build();
 
