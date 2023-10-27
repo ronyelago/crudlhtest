@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using LGApi.Infra;
 using LGApi.Interfaces;
+using LGApi.Middlewares;
 using LGApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,7 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseMiddleware<RequestSerilogMiddleware>();
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseAuthorization();
 app.MapControllers();
