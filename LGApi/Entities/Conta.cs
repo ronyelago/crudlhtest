@@ -2,6 +2,11 @@ namespace LGApi.Entities;
 
 public class Conta
 {
+    public Conta()
+    {
+        DataCadastro = DateTime.Now.ToUniversalTime();
+    }
+    
     public int Id { get; set; }
     public string? Descricao { get; set; }
     public decimal Valor {get; set; } = 0;
@@ -9,6 +14,6 @@ public class Conta
     public string? Observacoes { get; set; }
     public int DiaVencimento { get; set; }
     public DateTime? DataVencimento { get; set; }
-    public DateTime? DataCadastro { get; set; }
+    public DateTime? DataCadastro { get; set; } 
     public DateTime DataExpiracao { get; set; }
 }

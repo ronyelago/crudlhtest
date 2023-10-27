@@ -38,6 +38,9 @@ public class ContaController : Controller
     [HttpPost("NovaConta")]
     public async Task<ActionResult<ContaModel>> Post([FromBody] ContaModel contaModel)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         await contaRepository.Add(mapper.Map<Conta>(contaModel));
         return Created("", contaModel);
     }
@@ -45,6 +48,9 @@ public class ContaController : Controller
     [HttpPut("AtualizarConta/{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] ContaModel contaModel)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
         if (id != contaModel.Id)
             return BadRequest();
 
